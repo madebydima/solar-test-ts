@@ -15,10 +15,12 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import FormTag from "./FormTag.vue";
 
 @Component({
-    components: FormTag
+    components: {
+        FormTag
+    }
 })
 export default class ContainerTags extends Vue {
-    @Prop() private tagsData: object;
+    @Prop() private tagsData!: object;
 }
 </script>
 

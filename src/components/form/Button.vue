@@ -2,6 +2,7 @@
     <div class="form__output">
         <button
             class="form__input-button"
+            @click.prevent="onButtonClick"
             :readonly="inputData.readonly"
             :disabled="inputData.disabled"
             :style="computedStyle"
@@ -11,11 +12,11 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IButton } from "../../types";
+import { Button } from "../../types";
 
 @Component
-export default class Radio extends Vue {
-    @Prop() private inputData!: IButton;
+export default class FormButton extends Vue {
+    @Prop() private inputData!: Button;
 
     get computedStyle() {
         const backgroundColor = this.inputData.backgroundColor || null;
@@ -26,6 +27,10 @@ export default class Radio extends Vue {
             borderColor,
             color
         };
+    }
+
+    onButtonClick() {
+        console.log("Button has clicked!");
     }
 }
 </script>

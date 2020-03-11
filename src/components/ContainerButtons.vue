@@ -10,10 +10,12 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import FormButton from "./form/Button.vue";
 
 @Component({
-    components: FormButton
+    components: {
+        FormButton
+    }
 })
 export default class ContainerButtons extends Vue {
-    @Prop() private tagsData: object;
+    @Prop() private tagsData!: object;
 }
 </script>
 

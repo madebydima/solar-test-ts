@@ -2,9 +2,6 @@
 const regString = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;
 
 export default function (json) {
-    if (!json || !json.length) {
-        return;
-    }
     json = JSON.stringify(json, undefined, 4);
     json = json
         .replace(/&/g, "&")

@@ -24,11 +24,11 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { ISelect } from "../../types";
+import { Select } from "../../types";
 
 @Component
-export default class Select extends Vue {
-    @Prop() private inputData!: ISelect;
+export default class FormSelect extends Vue {
+    @Prop() private inputData!: Select;
 }
 </script>
 

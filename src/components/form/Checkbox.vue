@@ -17,11 +17,11 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { ICheckbox } from "../../types";
+import { Checkbox } from "../../types";
 
 @Component
-export default class Checkbox extends Vue {
-    @Prop() private inputData!: ICheckbox;
+export default class FormCheckbox extends Vue {
+    @Prop() private inputData!: Checkbox;
 }
 </script>
 

@@ -1,7 +1,17 @@
 <template>
     <div class="form__input">
         <textarea class="form__input-textarea" v-model="inputTextarea"></textarea>
-        <button @click="getFormFromCode" class="form__input-button">Сгенерировать форму ></button>
+        <div class="form__input-buttons">
+            <button
+                @click="getExample"
+                class="form__input-button form__input-button--outlined"
+            >Загрузить пример</button>
+            <button
+                @click="getFormFromCode"
+                class="form__input-button"
+                :disabled="inputTextarea.length < 20"
+            >Сгенерировать форму ></button>
+        </div>
 
         <div
             :class="{ 'form__output-formatted': true, 'form__output-formatted--opened': isToggleOutput }"
@@ -37,10 +47,6 @@ export default class JsonToForm extends Vue {
         this.isLoading = false;
     }
 
-    private mounted() {
-        this.inputTextarea = JSON.stringify(example);
-    }
-
     public getFormFromCode(): void {
         this.$emit("getFormFromCode", this.inputTextarea);
         this.getJsonFromRawInput(this.inputTextarea);
@@ -63,15 +69,22 @@ export default class JsonToForm extends Vue {
     public formatJSON(json: string) {
         return codeFormatter(json);
     }
+
+    public getExample() {
+        this.$emit("getFormFromCode", "");
+        this.inputTextarea = JSON.stringify(example);
+    }
 }
 </script>
 
 <style scoped lang="scss">
+@import "../assets/scss/_variables";
+
 .form {
     &__input {
         &-textarea {
             display: block;
-            width: calc(100% - 24px);
+            width: calc(100% - 32px);
             min-height: 600px;
             padding: 8px 16px;
             font-size: 18px;
@@ -104,18 +117,38 @@ export default class JsonToForm extends Vue {
                 border-color: #333;
             }
         }
+        &-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0;
+        }
         &-button {
             outline: 0;
-            border: 1px solid #42b983;
+            border: 1px solid $primary;
             border-radius: 4px;
-            padding: 8px 16px;
+            padding: 8px 32px;
             margin: 8px 0;
-            color: #1a5e3f;
+            color: #fff;
             font-size: 16px;
-            background-color: #98e7c4;
-            transition: background-color 0.4s ease;
+            font-weight: 700;
+            background-color: $primary;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
             &:hover {
-                background-color: #777;
+                background-color: $secondary;
+                // border-color: $secondary;
+                color: $primary;
+            }
+            &:disabled {
+                background-color: #ccc;
+                border-color: #ccc;
+                color: #999;
+            }
+            &--outlined {
+                background: none;
+                // border-color: transparent;
+                color: $primary;
             }
         }
     }

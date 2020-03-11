@@ -1,18 +1,18 @@
 <template>
     <div class="home">
-        <div class="home__block" v-if="true">
+        <div class="home__block" v-if="exampleObject">
             <div class="home__block-row" v-for="(block, idx) in exampleObject" :key="idx">
                 <h2>
                     <span>type:</span>
                     {{ block.element }}
                 </h2>
                 <p class="home__output-text">{{ getExampleText(block.element) }}</p>
-                <pre v-html="formatJSON(block)" class="home__output-preview"></pre>
+                <pre v-html="formatJSON(block)" class="form__output-preview"></pre>
             </div>
         </div>
         <div class="home__block">
             <h2>Полный пример</h2>
-            <pre v-html="formatJSON(example)" class="home__output-preview"></pre>
+            <pre v-html="formatJSON(example)" class="form__output-preview"></pre>
         </div>
     </div>
 </template>
@@ -29,6 +29,9 @@ export default {
     }),
     methods: {
         formatJSON(json) {
+            if (!json) {
+                return "df";
+            }
             return codeFormatter(json);
         },
         getExampleObject() {
@@ -103,26 +106,26 @@ export default {
         }
     }
 }
-.home__output {
-    &-text {
-        font-style: italic;
-    }
-    &-preview {
-        .string {
-            color: #885800;
-        }
-        .number {
-            color: blue;
-        }
-        .boolean {
-            color: magenta;
-        }
-        .null {
-            color: red;
-        }
-        .key {
-            color: green;
-        }
-    }
-}
+// .home__output {
+//     &-text {
+//         font-style: italic;
+//     }
+//     &-preview {
+//         .string {
+//             color: #885800;
+//         }
+//         .number {
+//             color: blue;
+//         }
+//         .boolean {
+//             color: magenta;
+//         }
+//         .null {
+//             color: red;
+//         }
+//         .key {
+//             color: green;
+//         }
+//     }
+// }
 </style>

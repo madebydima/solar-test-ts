@@ -16,11 +16,11 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { ITextarea } from "../../types";
+import { Textarea } from "../../types";
 
 @Component
-export default class Textarea extends Vue {
-    @Prop() private inputData!: ITextarea;
+export default class FormTextarea extends Vue {
+    @Prop() private inputData!: Textarea;
 }
 </script>
 

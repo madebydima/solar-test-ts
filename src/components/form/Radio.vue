@@ -18,11 +18,11 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IRadio } from "../../types";
+import { Radio } from "../../types";
 
 @Component
-export default class Radio extends Vue {
-    @Prop() private inputData!: IRadio;
+export default class FormRadio extends Vue {
+    @Prop() private inputData!: Radio;
 }
 </script>
 

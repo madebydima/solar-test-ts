@@ -25,10 +25,10 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IInput } from "../../types";
+import { Input } from "../../types";
 
 @Component
-export default class Input extends Vue {
+export default class FormInput extends Vue {
     parsedInput: string | null;
     isShowPassword: boolean;
 
@@ -38,7 +38,7 @@ export default class Input extends Vue {
         this.isShowPassword = false;
     }
 
-    @Prop() private inputData!: IInput;
+    @Prop() private inputData!: Input;
 
     get inputType() {
         if (this.inputData.type === "password" && !this.isShowPassword) {

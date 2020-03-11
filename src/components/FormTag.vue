@@ -4,12 +4,18 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { CommonSchema } from "../types";
 
 @Component
 export default class Tag extends Vue {
-    formTag: object;
+    formTag: object | null;
 
-    @Prop() private tagData: any;
+    constructor() {
+        super();
+        this.formTag = null;
+    }
+
+    @Prop() private tagData!: CommonSchema;
 
     mounted() {
         this.loader()
@@ -22,13 +28,10 @@ export default class Tag extends Vue {
     }
 
     get loader() {
-        if (!this.tagData.element) {
-            return null;
-        }
         const name =
             this.tagData.element[0].toUpperCase() +
             this.tagData.element.slice(1);
-        return () => import(`./form/${name}.vue`);
+        return () => import(`./form/${name}`);
     }
 }
 </script>

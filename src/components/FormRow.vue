@@ -17,7 +17,7 @@ import ContainerButtons from "./ContainerButtons.vue";
     }
 })
 export default class FormRow extends Vue {
-    @Prop() private formData: object;
+    @Prop() private formData!: object;
 }
 </script>
 
